@@ -1,0 +1,38 @@
+[
+  {
+    "id": "01",
+    "title": "AI Hostel Mess Food Demand & Waste Prediction",
+    "desc": "Built an ML model using historical meal data, attendance and event features to predict daily food prep quantities — reducing waste and costs for hostel mess management at LPU. Includes Student and Admin dashboards.",
+    "stack": ["Python", "ML", "Scikit-Learn", "Tailwind"],
+    "date": "Jan – May 2026",
+    "link": "",
+    "image": ""
+  },
+  {
+    "id": "02",
+    "title": "DonateSphere – Crowdfunding Platform",
+    "desc": "Full-stack MERN crowdfunding platform for campaign creation and donation tracking with JWT authentication. Frontend deployed on Vercel, backend on Render.",
+    "stack": ["MERN", "JWT", "Vercel", "Render"],
+    "date": "Feb – Apr 2026",
+    "link": "",
+    "image": ""
+  },
+  {
+    "id": "03",
+    "title": "TheBeing Seller – Trading Solutions Platform",
+    "desc": "Live trading dashboard with real-time Nifty/BankNifty bias, IST-aware session UI, risk calculators, and lead-gen CTAs — delivered as a freelance client project.",
+    "stack": ["JavaScript", "HTML5", "CSS3", "Live"],
+    "date": "Live",
+    "link": "https://thebeingseller.com",
+    "image": ""
+  },
+  {
+    "id": "04",
+    "title": "Food Junction – Food E-Commerce Website",
+    "desc": "Responsive food ordering platform showcasing menu items, chefs, and brand-aligned homepage design with a clean, appetizing user interface.",
+    "stack": ["HTML", "CSS"],
+    "date": "Nov 2024",
+    "link": "",
+    "image": ""
+  }
+]

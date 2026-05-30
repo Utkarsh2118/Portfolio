@@ -1,0 +1,7 @@
+[
+  { "group": "Languages", "tags": ["C", "C++", "C#", "Java", "Python", "JavaScript"] },
+  { "group": "Frameworks", "tags": ["React.js", "Node.js", "Express.js", "Tailwind CSS"] },
+  { "group": "Database & Tools", "tags": ["MongoDB", "Git", "GitHub", "VS Code", "Vercel", "Render"] },
+  { "group": "AI / ML", "tags": ["Machine Learning", "Scikit-Learn"] },
+  { "group": "Soft Skills", "tags": ["Problem-Solving", "Team Player", "Communication"] }
+]
