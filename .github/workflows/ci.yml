@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check:
+    name: Lint & Test (backend)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Detect backend scripts
+        id: detect
+        run: |
+          node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync('backend/package.json'));
+          console.log(JSON.stringify({lint:!!(p.scripts&&p.scripts.lint), test:!!(p.scripts&&p.scripts.test)}));" > /tmp/scripts.json
+          echo "has-lint=$(node -e \"console.log(require('/tmp/scripts.json').lint)\")" >> $GITHUB_OUTPUT
+          echo "has-test=$(node -e \"console.log(require('/tmp/scripts.json').test)\")" >> $GITHUB_OUTPUT
+
+      - name: Run lint (if available)
+        if: steps.detect.outputs.has-lint == 'true'
+        working-directory: backend
+        run: npm run lint
+
+      - name: Run tests (if available)
+        if: steps.detect.outputs.has-test == 'true'
+        working-directory: backend
+        run: npm test
+
+      - name: Basic checks complete
+        run: echo "CI checks finished. Add or expand tests and lint scripts in backend/package.json for more coverage."

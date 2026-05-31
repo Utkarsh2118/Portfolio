@@ -13,7 +13,15 @@ window.addEventListener('scroll', () => {
 // Contact form
 // Set your Formspree endpoint below (e.g. 'https://formspree.io/f/xyzabc')
 // By default this points to the local backend endpoint `/api/contact`.
-const FORM_ENDPOINT = '/api/contact'; // change to a remote form endpoint if preferred
+let FORM_ENDPOINT = '/api/contact';
+
+async function loadRuntimeConfig() {
+  const config = await loadJSON('config.json');
+  if (!config) return;
+  if (Object.prototype.hasOwnProperty.call(config, 'FORM_ENDPOINT')) {
+    FORM_ENDPOINT = String(config.FORM_ENDPOINT || '').trim();
+  }
+}
 
 async function handleContact() {
   const inputs = document.querySelectorAll('.form-input');
@@ -263,7 +271,8 @@ async function loadGitHubFeed() {
 }
 
 // Init
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadRuntimeConfig();
   loadProjects(); loadSkills(); loadCerts(); setupThemeToggle(); loadGitHubFeed();
 });
 

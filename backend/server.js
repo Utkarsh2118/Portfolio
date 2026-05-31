@@ -8,9 +8,22 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const allowedOrigins = (process.env.FRONTEND_ORIGIN || '')
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
 
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin(origin, callback) {
+    // Allow non-browser clients and same-origin requests without Origin header.
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('CORS blocked: origin not allowed'));
+  }
+}));
 app.use(express.json());
 
 // Serve static files (the frontend) from ../frontend
