@@ -12,15 +12,9 @@ services:
         value: 18
       - key: FRONTEND_ORIGIN
         sync: false
-      - key: SMTP_HOST
-        sync: false
-      - key: SMTP_PORT
-        sync: false
-      - key: SMTP_SECURE
-        sync: false
-      - key: SMTP_USER
-        sync: false
-      - key: SMTP_PASS
+      - key: RESEND_API_KEY
         sync: false
       - key: TO_EMAIL
+        sync: false
+      - key: FROM_EMAIL
         sync: false

@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +16,6 @@ const allowedOrigins = (process.env.FRONTEND_ORIGIN || '')
 app.use(helmet());
 app.use(cors({
   origin(origin, callback) {
-    // Allow non-browser clients and same-origin requests without Origin header.
     if (!origin) return callback(null, true);
     if (allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
       return callback(null, true);
@@ -46,31 +45,27 @@ app.post('/api/contact', async (req, res) => {
     return res.status(400).json({ error: 'Invalid submission' });
   }
 
-  // If SMTP configured, send email via nodemailer
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
-  const toEmail = process.env.TO_EMAIL || process.env.SMTP_USER;
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const toEmail = process.env.TO_EMAIL;
+  const fromEmail = process.env.FROM_EMAIL;
 
-  if (smtpHost && smtpUser && smtpPass && toEmail) {
+  if (resendApiKey && toEmail && fromEmail) {
     try {
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587,
-        secure: process.env.SMTP_SECURE === 'true',
-        auth: { user: smtpUser, pass: smtpPass }
-      });
+      const resend = new Resend(resendApiKey);
 
-      await transporter.sendMail({
-        from: `${name} <${email}>`,
+      await resend.emails.send({
+        from: fromEmail,
         to: toEmail,
         subject: `Portfolio inquiry from ${name}`,
-        text: `Name: ${name}\nEmail: ${email}\n\n${message}`
+        text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+        html: `<p><strong>Name:</strong> ${name}</p>
+               <p><strong>Email:</strong> ${email}</p>
+               <p><strong>Message:</strong><br>${message.replace(/\n/g, '<br>')}</p>`
       });
 
       return res.json({ ok: true });
     } catch (err) {
-      console.error('Mail send error:', err);
+      console.error('Resend error:', err);
       return res.status(500).json({ error: 'Failed to send email' });
     }
   }
