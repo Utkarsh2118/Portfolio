@@ -1,0 +1,252 @@
+/* ============================================
+   UPGRADES.CSS — All new feature styles
+   ============================================ */
+
+/* ---- 1. PARTICLE CANVAS ---- */
+#particle-canvas {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none; width: 100%; height: 100%;
+}
+
+/* ---- 2. HAMBURGER BUTTON ---- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px; height: 36px;
+  background: transparent;
+  border: 0.5px solid var(--mist);
+  cursor: pointer; padding: 0;
+}
+.hamburger span {
+  display: block; width: 18px; height: 1.5px;
+  background: var(--ink);
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+@media (max-width: 600px) { .hamburger { display: flex; } }
+
+/* ---- 3. MOBILE DRAWER ---- */
+.mobile-drawer {
+  position: fixed; top: 0; right: -100%;
+  width: min(280px, 85vw); height: 100vh;
+  background: var(--smoke);
+  border-left: 0.5px solid var(--mist);
+  z-index: 999;
+  padding: 5rem 2rem 2rem;
+  transition: right 0.35s cubic-bezier(.4,0,.2,1);
+}
+.mobile-drawer.open { right: 0; }
+.mobile-drawer ul { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.mobile-drawer ul li a {
+  display: block; padding: 1rem 0;
+  font-size: 1.1rem; font-weight: 300; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink); text-decoration: none;
+  border-bottom: 0.5px solid var(--mist);
+  transition: color 0.2s, padding-left 0.2s;
+}
+.mobile-drawer ul li a:hover { color: var(--gold); padding-left: 0.5rem; }
+.drawer-close {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  background: transparent; border: 0.5px solid var(--mist);
+  width: 32px; height: 32px; font-size: 1rem;
+  cursor: pointer; color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+}
+.drawer-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  z-index: 998; opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+/* Dark mode drawer */
+.dark .mobile-drawer { background: var(--smoke); }
+
+/* ---- 4. HERO PHOTO ---- */
+.hero-photo-wrap {
+  position: relative;
+  width: 96px; height: 96px;
+  margin-bottom: 1.75rem;
+}
+.hero-photo-ring {
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  animation: ring-spin 8s linear infinite;
+  border-top-color: transparent;
+  border-right-color: var(--gold-light);
+}
+@keyframes ring-spin { to { transform: rotate(360deg); } }
+.hero-photo-inner {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--mist), var(--smoke));
+  border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-photo-inner img { width: 100%; height: 100%; object-fit: cover; }
+.hero-photo-initials {
+  font-family: var(--serif); font-size: 2rem; font-weight: 400;
+  color: var(--gold-dark); letter-spacing: 0.05em;
+}
+
+/* ---- 5. AVAILABILITY BADGE ---- */
+.availability-badge {
+  position: absolute; bottom: -6px; right: -12px;
+  display: flex; align-items: center; gap: 5px;
+  background: var(--smoke); border: 0.5px solid var(--gold);
+  padding: 3px 8px; font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gold-dark); white-space: nowrap;
+}
+.avail-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #22c55e;
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+}
+
+/* ---- 6. STAT COUNTERS ---- */
+.hero-stats {
+  display: flex; align-items: center; gap: 0; flex-wrap: wrap;
+  margin-top: 2.5rem; padding-top: 2rem;
+  border-top: 0.5px solid var(--mist);
+}
+.stat-item { display: flex; flex-direction: column; align-items: center; padding: 0 1.75rem; }
+.stat-item:first-child { padding-left: 0; }
+.stat-num {
+  font-family: var(--serif); font-size: 2.5rem; font-weight: 300;
+  color: var(--gold-dark); line-height: 1;
+}
+.stat-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
+.stat-divider { width: 0.5px; height: 36px; background: var(--mist); }
+@media (max-width: 600px) {
+  .hero-stats { gap: 1rem; }
+  .stat-divider { display: none; }
+  .stat-item { padding: 0 0.75rem; }
+}
+
+/* ---- 7. HORIZONTAL TIMELINE ---- */
+.htimeline-wrap {
+  overflow-x: auto; padding-bottom: 1.5rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) var(--mist);
+}
+.htimeline-wrap::-webkit-scrollbar { height: 4px; }
+.htimeline-wrap::-webkit-scrollbar-track { background: var(--mist); }
+.htimeline-wrap::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+.htimeline-track {
+  display: flex; align-items: flex-start;
+  position: relative; min-width: max-content;
+  padding: 2.5rem 2rem 1rem;
+  gap: 0;
+}
+.htimeline-line {
+  position: absolute; top: calc(2.5rem + 10px); left: 2rem; right: 2rem; height: 0.5px;
+  background: var(--gold); opacity: 0.35;
+}
+.htimeline-item {
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; min-width: 160px;
+}
+.htimeline-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  border: 2px solid var(--gold); background: var(--smoke);
+  flex-shrink: 0; z-index: 1; margin-bottom: 1rem;
+  transition: transform 0.2s;
+}
+.htimeline-dot.gold { background: var(--gold); }
+.htimeline-dot.pulse { animation: dot-pulse 2s ease-in-out infinite; }
+.htimeline-item:hover .htimeline-dot { transform: scale(1.4); }
+.htimeline-card {
+  background: #fff; border: 0.5px solid var(--mist);
+  padding: 0.85rem 1rem; min-width: 140px; max-width: 155px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.htimeline-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+.htimeline-card.featured { border-left: 2px solid var(--gold); }
+.htimeline-date { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.3rem; }
+.htimeline-title { font-family: var(--serif); font-size: 0.95rem; font-weight: 400; color: var(--ink); margin-bottom: 0.2rem; }
+.htimeline-org { font-size: 0.75rem; color: var(--text-muted); }
+.htimeline-hint { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-top: 0.5rem; }
+.dark .htimeline-card { background: var(--mist); }
+
+/* ---- 8. TESTIMONIAL SECTION ---- */
+.testimonial-section { background: var(--mist); padding: 7rem 4rem; }
+.testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+.testimonial-card {
+  background: #fff; border: 0.5px solid rgba(200,169,110,0.3);
+  border-left: 3px solid var(--gold);
+  padding: 2rem 2rem 1.75rem; position: relative;
+}
+.dark .testimonial-card { background: var(--ink-soft); }
+.testimonial-quote {
+  font-family: var(--serif); font-size: 5rem; font-weight: 300;
+  color: var(--gold); opacity: 0.3; line-height: 0.8;
+  position: absolute; top: 1rem; left: 1.5rem;
+  pointer-events: none;
+}
+.testimonial-text {
+  font-size: 1rem; font-weight: 300; color: var(--ink-soft);
+  line-height: 1.85; margin-bottom: 1.5rem; padding-top: 1.5rem;
+}
+.testimonial-author { display: flex; align-items: center; gap: 0.85rem; }
+.testimonial-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--gold); color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
+  flex-shrink: 0;
+}
+.testimonial-name { font-size: 0.9rem; font-weight: 500; color: var(--ink); }
+.testimonial-role { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.1rem; }
+@media (max-width: 900px) { .testimonial-section { padding: 5rem 1.5rem; } }
+
+/* ---- 9. GITHUB STATS CARD ---- */
+.github-stats-card {
+  background: rgba(200,169,110,0.06);
+  border: 0.5px solid rgba(200,169,110,0.25);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.gh-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
+.gh-icon { font-size: 1.1rem; }
+.gh-username { font-size: 0.9rem; font-weight: 500; color: var(--smoke); }
+.gh-stats-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.gh-stat { display: flex; flex-direction: column; }
+.gh-stat-num { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; color: var(--gold-light); line-height: 1; }
+.gh-stat-lbl { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,245,240,0.5); margin-top: 2px; }
+.gh-repos { display: flex; flex-direction: column; gap: 0.5rem; }
+.gh-repo-item { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; padding-bottom: 0.5rem; border-bottom: 0.5px solid rgba(200,169,110,0.15); }
+.gh-repo-name { color: var(--gold-light); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color 0.2s; }
+.gh-repo-name:hover { color: var(--gold); }
+.gh-repo-desc { font-size: 0.75rem; color: rgba(247,245,240,0.45); }
+.gh-repo-stars { font-size: 0.75rem; color: rgba(247,245,240,0.45); white-space: nowrap; }
+.gh-loading { font-size: 0.85rem; color: rgba(247,245,240,0.5); }
+
+/* ---- 10. SCROLL PROGRESS BAR ---- */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: var(--gold); z-index: 9999;
+  width: 0%; transition: width 0.1s linear;
+}
+
+/* ---- TYPING CURSOR ---- */
+.typing-cursor {
+  display: inline-block; width: 2px;
+  background: currentColor; margin-left: 2px;
+  animation: blink 0.75s step-end infinite;
+  vertical-align: middle; height: 1em;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+@media (max-width: 900px) { .htimeline-wrap { margin: 0 -1.5rem; padding: 0 1.5rem 1.5rem; } }

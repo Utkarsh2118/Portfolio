@@ -5,8 +5,9 @@
     "desc": "Built an ML model using historical meal data, attendance and event features to predict daily food prep quantities — reducing waste and costs for hostel mess management at LPU. Includes Student and Admin dashboards.",
     "stack": ["Python", "ML", "Scikit-Learn", "Tailwind"],
     "date": "Jan – May 2026",
-    "link": "",
-    "image": ""
+    "link": "https://github.com/Utkarsh2118",
+    "github": "https://github.com/Utkarsh2118",
+    "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80"
   },
   {
     "id": "02",
@@ -14,8 +15,9 @@
     "desc": "Full-stack MERN crowdfunding platform for campaign creation and donation tracking with JWT authentication. Frontend deployed on Vercel, backend on Render.",
     "stack": ["MERN", "JWT", "Vercel", "Render"],
     "date": "Feb – Apr 2026",
-    "link": "",
-    "image": ""
+    "link": "https://github.com/Utkarsh2118",
+    "github": "https://github.com/Utkarsh2118",
+    "image": "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=600&q=80"
   },
   {
     "id": "03",
@@ -24,7 +26,8 @@
     "stack": ["JavaScript", "HTML5", "CSS3", "Live"],
     "date": "Live",
     "link": "https://thebeingseller.com",
-    "image": ""
+    "github": "",
+    "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80"
   },
   {
     "id": "04",
@@ -32,7 +35,8 @@
     "desc": "Responsive food ordering platform showcasing menu items, chefs, and brand-aligned homepage design with a clean, appetizing user interface.",
     "stack": ["HTML", "CSS"],
     "date": "Nov 2024",
-    "link": "",
-    "image": ""
+    "link": "https://github.com/Utkarsh2118",
+    "github": "https://github.com/Utkarsh2118",
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80"
   }
 ]

@@ -4,69 +4,84 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Utkarsh Srivastava – Full Stack Developer</title>
-  <meta name="description" content="Utkarsh Srivastava — Full Stack Developer & ML Engineer. Building scalable web apps, AI systems, and real products. Open to internships and freelance work." />
-  <meta name="keywords" content="Utkarsh Srivastava, Full Stack Developer, Machine Learning, MERN, React, Node.js, Portfolio" />
-  <link rel="canonical" href="https://yourdomain.com/" />
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Utkarsh Srivastava – Full Stack Developer" />
-  <meta property="og:description" content="Building scalable web apps, AI systems, and real-world products. Open to internships and freelance work." />
-  <meta property="og:image" content="/og-image.png" />
-  <meta property="og:url" content="https://yourdomain.com/" />
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Utkarsh Srivastava – Full Stack Developer" />
-  <meta name="twitter:description" content="Building scalable web apps, AI systems, and real-world products. Open to internships and freelance work." />
-  <meta name="twitter:image" content="/og-image.png" />
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Utkarsh Srivastava",
-    "jobTitle": "Full Stack Developer",
-    "url": "https://yourdomain.com",
-    "sameAs": ["https://github.com/Utkarsh2118","https://www.linkedin.com/in/utkarsh-srivastava2107/"]
-  }
-  </script>
+<meta name="description" content="Utkarsh Srivastava — Full Stack Developer & ML Engineer. Built a live freelance trading platform, 3 full-stack projects, 6 certifications. Open to internships and freelance work." />
+<meta name="keywords" content="Utkarsh Srivastava, Full Stack Developer, Machine Learning, MERN, React, Node.js, Portfolio, Freelance Developer" />
+<link rel="canonical" href="https://portfolio-rho-hazel-h9xih9xf5e.vercel.app/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Utkarsh Srivastava – Full Stack Developer & ML Engineer" />
+<meta property="og:description" content="B.Tech CSE student at LPU. Built a live freelance trading platform, 3 deployed projects, 6 certifications. Open to internships & freelance work." />
+<meta property="og:image" content="https://portfolio-rho-hazel-h9xih9xf5e.vercel.app/og-image.png" />
+<meta property="og:url" content="https://portfolio-rho-hazel-h9xih9xf5e.vercel.app/" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Utkarsh Srivastava – Full Stack Developer & ML Engineer" />
+<meta name="twitter:description" content="B.Tech CSE at LPU. Built a live freelance trading platform, 3 deployed projects. Open to internships & freelance." />
+<meta name="twitter:image" content="https://portfolio-rho-hazel-h9xih9xf5e.vercel.app/og-image.png" />
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Utkarsh Srivastava",
+  "jobTitle": "Full Stack Developer & ML Engineer",
+  "url": "https://portfolio-rho-hazel-h9xih9xf5e.vercel.app",
+  "sameAs": ["https://github.com/Utkarsh2118","https://www.linkedin.com/in/utkarsh-srivastava2107/"]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css"/>
-
-  /* Typing cursor */
-  .typing-cursor {
-    display: inline-block;
-    width: 2px;
-    background: currentColor;
-    margin-left: 2px;
-    animation: blink 0.75s step-end infinite;
-    vertical-align: middle;
-    height: 1em;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+<link rel="stylesheet" href="upgrades.css"/>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ===================== NAV ===================== -->
 <nav role="navigation" aria-label="Main navigation">
   <a href="#hero" class="nav-logo">Utkarsh <span>Srivastava</span></a>
-  <div style="display:flex; align-items:center; gap:0.6rem; margin-left:1rem;">
+
+  <div style="display:flex; align-items:center; gap:0.6rem; margin-left:auto;">
     <button id="theme-toggle" aria-label="Toggle theme" class="btn-outline" style="padding:0.35rem 0.6rem; font-size:0.82rem;">Theme</button>
     <button id="resume-btn" class="btn-outline" style="padding:0.35rem 0.6rem; font-size:0.82rem;">Resume</button>
     <a id="resume-download" href="resume.pdf" download class="btn-outline" style="padding:0.35rem 0.6rem; font-size:0.82rem;">Download</a>
+    <!-- Hamburger (mobile only) -->
+    <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <ul class="nav-links">
+
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-</nav>  
+</nav>
 
-<!-- HERO -->
+<!-- Mobile drawer -->
+<div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
+  <button id="drawer-close" class="drawer-close" aria-label="Close menu">✕</button>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+<div id="drawer-overlay" class="drawer-overlay"></div>
+
+<!-- ===================== HERO ===================== -->
 <section class="hero" id="hero">
+  <!-- Particle canvas -->
+  <canvas id="particle-canvas"></canvas>
   <div class="hero-bg"></div>
   <div class="hero-lines">
     <svg viewBox="0 0 500 800" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,31 +94,69 @@
       <rect x="280" y="400" width="120" height="120" stroke="#C8A96E" stroke-width="0.5" opacity="0.12" transform="rotate(20 340 460)"/>
     </svg>
   </div>
+
   <div class="hero-content fade-up">
+    <!-- Profile Photo -->
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-ring"></div>
+      <div class="hero-photo-inner">
+        <span class="hero-photo-initials">US</span>
+      </div>
+      <!-- Open to Work badge -->
+      <div class="availability-badge">
+        <span class="avail-dot"></span>
+        Available for work
+      </div>
+    </div>
+
     <div class="hero-tag"><span id="typing-text"></span><span class="typing-cursor">|</span></div>
     <h1>Utkarsh<br/><em>Srivastava</em></h1>
-    <p class="hero-sub">B.Tech CSE student at Lovely Professional University building scalable web applications, AI-powered systems, and real-world products that make a difference.</p>
+    <p class="hero-sub">B.Tech CSE student at Lovely Professional University. I build scalable web apps, AI-powered systems, and real-world products — with one live freelance client already under my belt.</p>
     <div class="hero-actions">
       <a href="#projects" class="btn-primary">View Projects →</a>
       <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
+
+    <!-- Stat counters -->
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num" data-target="3">0</span>
+        <span class="stat-label">Projects Built</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="6">0</span>
+        <span class="stat-label">Certifications</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="1">0</span>
+        <span class="stat-label">Live Client</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="2">0</span>
+        <span class="stat-label">Years Coding</span>
+      </div>
+    </div>
   </div>
+
   <div class="hero-scroll">
     <div class="hero-scroll-line"></div>
     Scroll to explore
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ===================== ABOUT ===================== -->
 <section class="about" id="about">
   <div class="section-label">About Me</div>
   <h2 class="section-title">Building ideas into<br/><em style="font-family:var(--serif); font-style:italic;">real products</em></h2>
   <div class="about-grid fade-up">
     <div>
       <div class="about-text">
-        <p>I'm a motivated Computer Science student passionate about turning complex problems into elegant, functional solutions. From full-stack MERN apps to machine learning systems, I enjoy the complete journey — design to deployment.</p>
-        <p>As a freelance developer, I've delivered live client projects from scratch, handling everything from UI design to server deployment. I thrive at the intersection of clean code and real impact.</p>
-        <p>Currently in my second year at LPU, I've already built and deployed three full-stack and AI-powered projects, earning six technical certifications along the way.</p>
+        <p>I'm a Computer Science student at LPU who ships things. In my first year alone, I delivered a live freelance trading platform for a paying client — handling everything from design to deployment, solo. I don't just learn technologies; I apply them to real problems.</p>
+        <p>My work spans full-stack MERN development, ML-powered systems, and production deployments on Vercel and Render. I'm comfortable owning an entire project: scoping, building, testing, and launching.</p>
+        <p>Currently in my second year, I've already completed three deployed projects and earned six technical certifications from organisations including NASSCOM, Infosys, and the Ministry of Education. I'm actively looking for internship and freelance opportunities where I can add real value.</p>
       </div>
       <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
         <a href="https://github.com/Utkarsh2118" target="_blank" class="btn-outline" style="font-size:0.75rem; padding: 0.65rem 1.4rem;">GitHub ↗</a>
@@ -144,7 +197,7 @@
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- ===================== SKILLS ===================== -->
 <section class="skills" id="skills">
   <div class="section-label">Technical Skills</div>
   <h2 class="section-title">Tools &amp; Technologies</h2>
@@ -187,7 +240,7 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ===================== PROJECTS ===================== -->
 <section class="projects" id="projects">
   <div class="section-label">Projects</div>
   <h2 class="section-title">Selected Work</h2>
@@ -200,16 +253,87 @@
       </select>
     </div>
   </div>
-  <div class="projects-grid fade-up" id="projects-grid" role="list" aria-labelledby="projects-heading">
-    <!-- Projects will be rendered here by script.js -->
-  </div>
+  <div class="projects-grid fade-up" id="projects-grid" role="list"></div>
 </section>
 
-<!-- EXPERIENCE -->
+<!-- ===================== EXPERIENCE ===================== -->
 <section class="experience" id="experience">
   <div class="section-label">Experience &amp; Certifications</div>
   <h2 class="section-title">Professional Journey</h2>
-  <div class="fade-up">
+
+  <!-- Horizontal Timeline -->
+  <div class="htimeline-wrap fade-up">
+    <div class="htimeline-track">
+      <div class="htimeline-line"></div>
+
+      <div class="htimeline-item">
+        <div class="htimeline-dot"></div>
+        <div class="htimeline-card">
+          <div class="htimeline-date">Aug 2024</div>
+          <div class="htimeline-title">Started B.Tech CSE</div>
+          <div class="htimeline-org">Lovely Professional University</div>
+        </div>
+      </div>
+
+      <div class="htimeline-item">
+        <div class="htimeline-dot"></div>
+        <div class="htimeline-card">
+          <div class="htimeline-date">Nov 2024</div>
+          <div class="htimeline-title">CSS Certification</div>
+          <div class="htimeline-org">HackerRank</div>
+        </div>
+      </div>
+
+      <div class="htimeline-item">
+        <div class="htimeline-dot"></div>
+        <div class="htimeline-card">
+          <div class="htimeline-date">Jan 2025</div>
+          <div class="htimeline-title">Python Certification</div>
+          <div class="htimeline-org">CSE Pathshala</div>
+        </div>
+      </div>
+
+      <div class="htimeline-item">
+        <div class="htimeline-dot"></div>
+        <div class="htimeline-card">
+          <div class="htimeline-date">Aug–Sep 2025</div>
+          <div class="htimeline-title">C++ Certifications ×2</div>
+          <div class="htimeline-org">Infosys + Saylor Univ.</div>
+        </div>
+      </div>
+
+      <div class="htimeline-item">
+        <div class="htimeline-dot gold"></div>
+        <div class="htimeline-card featured">
+          <div class="htimeline-date">Jan–Mar 2026</div>
+          <div class="htimeline-title">Freelance Developer</div>
+          <div class="htimeline-org">thebeingseller.com · Live</div>
+        </div>
+      </div>
+
+      <div class="htimeline-item">
+        <div class="htimeline-dot"></div>
+        <div class="htimeline-card">
+          <div class="htimeline-date">Feb 2026</div>
+          <div class="htimeline-title">AI & GenAI Certs ×2</div>
+          <div class="htimeline-org">MoE · NASSCOM</div>
+        </div>
+      </div>
+
+      <div class="htimeline-item">
+        <div class="htimeline-dot gold pulse"></div>
+        <div class="htimeline-card featured">
+          <div class="htimeline-date">Now</div>
+          <div class="htimeline-title">Open to Opportunities</div>
+          <div class="htimeline-org">Internship &amp; Freelance</div>
+        </div>
+      </div>
+    </div>
+    <p class="htimeline-hint">← Scroll to explore →</p>
+  </div>
+
+  <!-- Legacy vertical for detail -->
+  <div class="fade-up" style="margin-top:3.5rem;">
     <div class="exp-timeline">
       <div class="exp-item">
         <div class="exp-date">Jan 2026 – Mar 2026</div>
@@ -221,82 +345,75 @@
 
     <h3 style="font-family: var(--serif); font-size: 1.5rem; font-weight: 300; color: var(--ink); margin: 3rem 0 1.5rem;">Certifications</h3>
     <div class="certs-grid">
-      <div class="cert-card">
-        <div class="cert-name">AICTE HEIs AI Pre-Summit</div>
-        <div class="cert-issuer">Ministry of Education, Govt. of India · Feb 2026</div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-name">GEN AI – Generative AI</div>
-        <div class="cert-issuer">NASSCOM · Feb 2026</div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-name">Programming Using C++</div>
-        <div class="cert-issuer">Infosys Springboard · Aug 2025</div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-name">CS107: C++ Programming</div>
-        <div class="cert-issuer">Saylor University · Sep 2025</div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-name">Basic to Beyond Python</div>
-        <div class="cert-issuer">CSE Pathshala · Jan 2025</div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-name">CSS Basic Course</div>
-        <div class="cert-issuer">HackerRank · Nov 2024</div>
-      </div>
+      <div class="cert-card"><div class="cert-name">AICTE HEIs AI Pre-Summit</div><div class="cert-issuer">Ministry of Education, Govt. of India · Feb 2026</div></div>
+      <div class="cert-card"><div class="cert-name">GEN AI – Generative AI</div><div class="cert-issuer">NASSCOM · Feb 2026</div></div>
+      <div class="cert-card"><div class="cert-name">Programming Using C++</div><div class="cert-issuer">Infosys Springboard · Aug 2025</div></div>
+      <div class="cert-card"><div class="cert-name">CS107: C++ Programming</div><div class="cert-issuer">Saylor University · Sep 2025</div></div>
+      <div class="cert-card"><div class="cert-name">Basic to Beyond Python</div><div class="cert-issuer">CSE Pathshala · Jan 2025</div></div>
+      <div class="cert-card"><div class="cert-name">CSS Basic Course</div><div class="cert-issuer">HackerRank · Nov 2024</div></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ===================== TESTIMONIAL ===================== -->
+<section class="testimonial-section" id="testimonials">
+  <div class="section-label">Client Feedback</div>
+  <h2 class="section-title">What clients say</h2>
+  <div class="testimonial-grid fade-up">
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Utkarsh delivered the entire platform from scratch — design, frontend, backend, and deployment — with zero hand-holding. The result was a polished, live trading dashboard that exceeded my expectations. I'd hire him again without hesitation.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">C</div>
+        <div>
+          <div class="testimonial-name">Client</div>
+          <div class="testimonial-role">Founder, <a href="https://thebeingseller.com" target="_blank" style="color:var(--gold-dark);">thebeingseller.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:0.82rem; color:var(--text-muted); margin-top:1rem; font-style:italic;">* Replace this with your actual client quote once collected.</p>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
 <section class="contact" id="contact">
   <div class="section-label">Contact</div>
   <h2 class="section-title">Let's Work Together</h2>
   <div class="contact-grid fade-up">
     <div>
       <p class="contact-text">Whether you have a project in mind, want to collaborate, or just want to connect — I'd love to hear from you. Currently open to internship and freelance opportunities.</p>
-      <div id="github-feed" style="margin-top:1.25rem;"></div>
-      <div class="contact-links">
+
+      <!-- GitHub Stats Card -->
+      <div id="github-stats-card" class="github-stats-card">
+        <div class="gh-loading">Loading GitHub stats…</div>
+      </div>
+
+      <div class="contact-links" style="margin-top:1.5rem;">
         <a href="mailto:srivastava.utkarsh2118@gmail.com" class="contact-link">
-          <div class="contact-link-icon">@</div>
-          srivastava.utkarsh2118@gmail.com
+          <div class="contact-link-icon">@</div>srivastava.utkarsh2118@gmail.com
         </a>
         <a href="tel:+917007817837" class="contact-link">
-          <div class="contact-link-icon">☎</div>
-          +91-7007817837
+          <div class="contact-link-icon">☎</div>+91-7007817837
         </a>
         <a href="https://www.linkedin.com/in/utkarsh-srivastava2107/" target="_blank" class="contact-link">
-          <div class="contact-link-icon">in</div>
-          linkedin.com/in/utkarsh-srivastava2107
+          <div class="contact-link-icon">in</div>linkedin.com/in/utkarsh-srivastava2107
         </a>
         <a href="https://github.com/Utkarsh2118" target="_blank" class="contact-link">
-          <div class="contact-link-icon">gh</div>
-          github.com/Utkarsh2118
+          <div class="contact-link-icon">gh</div>github.com/Utkarsh2118
         </a>
       </div>
     </div>
     <div>
       <div class="contact-form">
-        <div class="form-field">
-          <label class="form-label">Your Name</label>
-          <input type="text" class="form-input" placeholder="Jane Smith"/>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Email Address</label>
-          <input type="email" class="form-input" placeholder="jane@example.com"/>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Message</label>
-          <textarea class="form-input" placeholder="Tell me about your project or opportunity..."></textarea>
-        </div>
+        <div class="form-field"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="Jane Smith"/></div>
+        <div class="form-field"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="jane@example.com"/></div>
+        <div class="form-field"><label class="form-label">Message</label><textarea class="form-input" placeholder="Tell me about your project or opportunity..."></textarea></div>
         <button class="btn-send" onclick="handleContact()">Send Message →</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <!-- Project modal -->
 <div id="project-modal" class="project-modal" aria-hidden="true" style="display:none;">
   <div class="modal-backdrop"></div>
@@ -315,9 +432,7 @@
       <a id="resume-download-modal" href="resume.pdf" download class="btn-primary">Download Resume</a>
       <span style="color:var(--text-muted); font-size:0.9rem;">(opens embedded viewer)</span>
     </div>
-    <div id="resume-body" style="min-height:320px;">
-      <!-- Embed will be created on-demand -->
-    </div>
+    <div id="resume-body" style="min-height:320px;"></div>
   </div>
 </div>
 
@@ -326,16 +441,6 @@
 </footer>
 
 <script src="script.js"></script>
-<!-- Analytics placeholder: replace with your analytics provider code
-     Example (Plausible):
-     <script async defer data-domain="yourdomain.com" src="https://plausible.io/js/plausible.js"></script>
-     Example (Google Analytics):
-     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-     <script>
-       window.dataLayer = window.dataLayer || [];
-       function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
-       gtag('config', 'GA_MEASUREMENT_ID');
-     </script>
--->
+<script src="upgrades.js"></script>
 </body>
 </html>
