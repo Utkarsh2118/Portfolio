@@ -1,3 +1,237 @@
+/* ==============================
+   1. TYPING ANIMATION
+   ============================== */
+(function setupTyping() {
+  const el = document.getElementById('typing-text');
+  if (!el) return;
+  const titles = [
+    'Full Stack Developer',
+    'ML Engineer',
+    'Freelance Developer',
+    'MERN Stack Dev',
+    'Problem Solver'
+  ];
+  let ti = 0, ci = 0, deleting = false;
+
+  function tick() {
+    const current = titles[ti];
+    if (!deleting) {
+      el.textContent = current.slice(0, ++ci);
+      if (ci === current.length) {
+        deleting = true;
+        setTimeout(tick, 1800);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, --ci);
+      if (ci === 0) {
+        deleting = false;
+        ti = (ti + 1) % titles.length;
+        setTimeout(tick, 400);
+        return;
+      }
+    }
+    setTimeout(tick, deleting ? 55 : 100);
+  }
+  setTimeout(tick, 600);
+})();
+
+/* ==============================
+   2. SCROLL ANIMATIONS (fade-up)
+   ============================== */
+(function setupScrollAnim() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+})();
+
+/* ==============================
+   4. PROJECT FILTER ANIMATION
+   ============================== */
+function animateFilterChange(grid, newCards) {
+  // fade out existing cards
+  Array.from(grid.children).forEach(c => {
+    c.style.transition = 'opacity 0.2s, transform 0.2s';
+    c.style.opacity = '0';
+    c.style.transform = 'scale(0.95)';
+  });
+  setTimeout(() => {
+    grid.innerHTML = '';
+    newCards.forEach((card, i) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(18px)';
+      grid.appendChild(card);
+      setTimeout(() => {
+        card.style.transition = 'opacity 0.3s, transform 0.3s';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, i * 60);
+    });
+  }, 200);
+}
+
+/* ==============================
+   5. GITHUB STATS (stars + forks)
+   ============================== */
+async function loadGitHubStats() {
+  const container = document.getElementById('github-feed');
+  if (!container) return;
+  try {
+    const res = await fetch('https://api.github.com/users/Utkarsh2118/repos?sort=updated&per_page=6');
+    if (!res.ok) throw new Error('GitHub API error');
+    const repos = await res.json();
+    if (!repos || !repos.length) return;
+
+    const totalStars = repos.reduce((s, r) => s + r.stargazers_count, 0);
+    const totalForks = repos.reduce((s, r) => s + r.forks_count, 0);
+
+    container.innerHTML = `
+      <div style="display:flex;gap:1rem;margin-bottom:0.75rem;flex-wrap:wrap;">
+        <span style="font-size:0.85rem;color:var(--text-muted);">⭐ ${totalStars} stars</span>
+        <span style="font-size:0.85rem;color:var(--text-muted);">🍴 ${totalForks} forks</span>
+        <span style="font-size:0.85rem;color:var(--text-muted);">📦 ${repos.length} repos</span>
+      </div>
+      <h4 style="margin:0 0 0.5rem;">Latest on GitHub</h4>
+      ${repos.map(r => `
+        <div style="margin-bottom:0.6rem;display:flex;justify-content:space-between;align-items:center;gap:0.5rem;">
+          <div>
+            <a href="${r.html_url}" target="_blank" style="color:var(--gold-dark);text-decoration:none;font-weight:500;">${r.name}</a>
+            <div style="font-size:0.82rem;color:var(--text-muted);">${r.description || ''}</div>
+          </div>
+          <div style="font-size:0.78rem;color:var(--text-muted);white-space:nowrap;">⭐ ${r.stargazers_count}</div>
+        </div>
+      `).join('')}
+    `;
+  } catch (err) { console.error('GitHub stats error', err); }
+}
+
+/* ==============================
+   6. PROJECT CARD HOVER PREVIEW
+   ============================== */
+function enhanceProjectCards() {
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.style.transition = 'transform 0.25s cubic-bezier(.4,0,.2,1), box-shadow 0.25s';
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-6px) scale(1.02)';
+      card.style.boxShadow = '0 12px 32px rgba(0,0,0,0.13)';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    });
+  });
+}
+
+/* ==============================
+   7. CERTIFICATIONS — CLICKABLE
+   ============================== */
+function makeCertsClickable() {
+  // certs.json will need links; for now make cards visually interactive
+  document.querySelectorAll('.cert-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.style.transition = 'transform 0.2s, box-shadow 0.2s';
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-3px)';
+      card.style.boxShadow = '0 6px 20px rgba(0,0,0,0.10)';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    });
+  });
+}
+
+/* ==============================
+   8. CUSTOM CURSOR
+   ============================== */
+(function setupCursor() {
+  // Skip on touch devices
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  const dot = document.createElement('div');
+  dot.id = 'cursor-dot';
+  dot.style.cssText = `
+    position:fixed;width:10px;height:10px;border-radius:50%;
+    background:var(--gold-dark,#b8860b);pointer-events:none;
+    z-index:99999;transform:translate(-50%,-50%);
+    transition:transform 0.15s, width 0.2s, height 0.2s, opacity 0.2s;
+    opacity:0;
+  `;
+  const ring = document.createElement('div');
+  ring.id = 'cursor-ring';
+  ring.style.cssText = `
+    position:fixed;width:32px;height:32px;border-radius:50%;
+    border:1.5px solid var(--gold-dark,#b8860b);pointer-events:none;
+    z-index:99998;transform:translate(-50%,-50%);
+    transition:left 0.1s ease-out, top 0.1s ease-out, width 0.2s, height 0.2s, opacity 0.2s;
+    opacity:0;
+  `;
+  document.body.appendChild(dot);
+  document.body.appendChild(ring);
+
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    dot.style.opacity = '1'; ring.style.opacity = '0.6';
+    ring.style.left = mx + 'px'; ring.style.top = my + 'px';
+  });
+
+  document.addEventListener('mousedown', () => {
+    dot.style.transform = 'translate(-50%,-50%) scale(0.7)';
+    ring.style.width = '20px'; ring.style.height = '20px';
+  });
+  document.addEventListener('mouseup', () => {
+    dot.style.transform = 'translate(-50%,-50%) scale(1)';
+    ring.style.width = '32px'; ring.style.height = '32px';
+  });
+
+  // Scale up on hoverable elements
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest('a, button, .project-card, .cert-card, .skill-tag')) {
+      dot.style.width = '14px'; dot.style.height = '14px';
+      ring.style.width = '44px'; ring.style.height = '44px';
+      ring.style.opacity = '0.4';
+    }
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest('a, button, .project-card, .cert-card, .skill-tag')) {
+      dot.style.width = '10px'; dot.style.height = '10px';
+      ring.style.width = '32px'; ring.style.height = '32px';
+      ring.style.opacity = '0.6';
+    }
+  });
+
+  document.addEventListener('mouseleave', () => {
+    dot.style.opacity = '0'; ring.style.opacity = '0';
+  });
+})();
+
+/* ==============================
+   9. SMOOTH DARK/LIGHT TRANSITION
+   ============================== */
+(function setupSmoothTheme() {
+  const style = document.createElement('style');
+  style.textContent = `
+    *, *::before, *::after {
+      transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important;
+    }
+  `;
+  // Inject only during theme toggle to avoid slowing down page load
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    document.head.appendChild(style);
+    setTimeout(() => style.remove(), 400);
+  });
+})();
+
 // Scroll animations
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -102,8 +336,24 @@ function populateProjectFilter(projects) {
   });
   select.addEventListener('change', () => {
     const v = select.value;
-    if (v === 'all') renderProjects(allProjects);
-    else renderProjects(allProjects.filter(p => p.stack.includes(v)));
+    const filtered = v === 'all' ? allProjects : allProjects.filter(p => p.stack.includes(v));
+    const grid = document.getElementById('projects-grid');
+    if (!grid) { renderProjects(filtered); return; }
+    // build cards without inserting into DOM
+    const tempDiv = document.createElement('div');
+    const prevGrid = grid.cloneNode(false);
+    renderProjects(filtered); // render normally first to build cards
+    const cards = Array.from(grid.children);
+    // re-apply animation
+    cards.forEach((c, i) => {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(18px)';
+      setTimeout(() => {
+        c.style.transition = 'opacity 0.3s, transform 0.3s';
+        c.style.opacity = '1';
+        c.style.transform = 'translateY(0)';
+      }, i * 60);
+    });
   });
 }
 
@@ -130,6 +380,7 @@ function renderProjects(projects) {
   });
   // Start observing lazy images
   lazyLoadImages();
+  setTimeout(enhanceProjectCards, 100);
 }
 
 // Lazy-load images using IntersectionObserver
@@ -237,9 +488,15 @@ async function loadCerts() {
   grid.innerHTML = '';
   data.forEach(c => {
     const el = document.createElement('div'); el.className = 'cert-card';
-    el.innerHTML = `<div class="cert-name">${c.name}</div><div class="cert-issuer">${c.issuer}</div>`;
+    const link = c.link ? `href="${c.link}" target="_blank"` : '';
+    const tag = c.link ? 'a' : 'div';
+    el.innerHTML = `<${tag} ${link} style="text-decoration:none;color:inherit;display:block;">
+      <div class="cert-name">${c.name}</div>
+      <div class="cert-issuer">${c.issuer} ${c.link ? '<span style="font-size:0.75rem;opacity:0.6;">↗</span>' : ''}</div>
+    </${tag}>`;
     grid.appendChild(el);
   });
+  makeCertsClickable();
 }
 
 // Theme toggle
@@ -273,7 +530,7 @@ async function loadGitHubFeed() {
 // Init
 document.addEventListener('DOMContentLoaded', async () => {
   await loadRuntimeConfig();
-  loadProjects(); loadSkills(); loadCerts(); setupThemeToggle(); loadGitHubFeed();
+  loadProjects(); loadSkills(); loadCerts(); setupThemeToggle(); loadGitHubStats();
 });
 
 // Button ripple effect

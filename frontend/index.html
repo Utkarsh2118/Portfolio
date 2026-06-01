@@ -33,6 +33,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css"/>
+
+  /* Typing cursor */
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    background: currentColor;
+    margin-left: 2px;
+    animation: blink 0.75s step-end infinite;
+    vertical-align: middle;
+    height: 1em;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 </head>
 <body>
 
@@ -68,7 +80,7 @@
     </svg>
   </div>
   <div class="hero-content fade-up">
-    <div class="hero-tag">Full Stack Developer &amp; ML Engineer</div>
+    <div class="hero-tag"><span id="typing-text"></span><span class="typing-cursor">|</span></div>
     <h1>Utkarsh<br/><em>Srivastava</em></h1>
     <p class="hero-sub">B.Tech CSE student at Lovely Professional University building scalable web applications, AI-powered systems, and real-world products that make a difference.</p>
     <div class="hero-actions">
